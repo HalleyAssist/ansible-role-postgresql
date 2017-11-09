@@ -1,4 +1,4 @@
 ---
 - name: restart postgresql
   service: "name={{ postgresql_daemon }} state=restarted sleep=5"
-  when: postgresql_skip_restart!=False
+  when: postgresql_skip_restart!=True
