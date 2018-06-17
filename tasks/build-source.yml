@@ -1,0 +1,5 @@
+- copy: src="https://ftp.postgresql.org/pub/source/{{postgresql_build}}/postgresql-{{postgresql_build}}.tar.gz" dst=/tmp/postgresql.tar.gz
+- unarchive: src=/tmp/postgresql.tar.gz dst=/tmp/build_postgresql
+- shell: ./configure chdir=/tmp/build_postgresql
+- shell: make
+- shell: make install

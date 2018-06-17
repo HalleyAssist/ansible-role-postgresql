@@ -55,3 +55,7 @@ postgresql_users: []
   #   state: # defaults to 'present'
 
 postgresql_skip_restart: False
+
+postgresql_build: False
+postgresql_build_dependencies:
+ - build-essential
