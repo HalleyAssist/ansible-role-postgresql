@@ -3,21 +3,21 @@
   apt:
     name: "{{ postgresql_python_library }}"
     state: installed
-  where: 'postgresql_python_library != ""'
+  when: 'postgresql_python_library != ""'
 
 - name: Ensure PostgreSQL packages are installed.
   apt:
     name: "{{ item }}"
     state: installed
   with_items: "{{ postgresql_packages }}"
-  where: 'postgresql_source_build == False'
+  when: 'postgresql_source_build == False'
 
 - name: Ensure PostgreSQL build dependencies are installed.
   apt:
     name: "{{ item }}"
     state: installed
   with_items: "{{ postgresql_build_dependencies }}"
-  where: 'postgresql_source_build'
+  when: 'postgresql_source_build'
 
 - name: Ensure all configured locales are present.
   locale_gen: "name={{ item }} state=present"
@@ -32,4 +32,4 @@
 
 - name: Execute PostgreSQL build
   include: build-source.yml
-  where: 'postgresql_source_build'
+  when: 'postgresql_source_build'
