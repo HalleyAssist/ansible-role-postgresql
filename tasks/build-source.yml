@@ -5,8 +5,9 @@
 - shell: make install chdir=/tmp/postgresql-{{postgresql_source_build}}
 - copy: src=postgresql.service dest=/lib/systemd/system/postgresql.service
 - copy: src=postgresql@.service dest=/lib/systemd/system/postgresql@.service
+- copy: src=postgresql.init dest=/etc/init.d/postgresql mode=u=rwx,g=rx,o=rx
 
 - name: Enable service
-  systemd:
+  service:
     name: postgresql
     enabled: yes
