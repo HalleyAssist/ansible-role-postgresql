@@ -6,6 +6,21 @@
     mode: 0644
   notify: restart postgresql
 
+
+- group: 
+    name: "{{ postgresql_group }}"
+    gid: "{{ postgresql_group_id }}"
+    state: present
+
+- user:
+    name: "{{ postgresql_user }}"
+    comment: PostgreSQL administrator
+    uid: "{{ postgresql_user_id }}"
+    home: /var/lib/postgresql
+    shell: /bin/bash
+    group: "{{ postgresql_group }}"
+    state: present
+
 - name: Ensure PostgreSQL data directory exists.
   file:
     path: "{{ postgresql_data_dir }}"
