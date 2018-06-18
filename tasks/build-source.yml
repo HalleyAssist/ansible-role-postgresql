@@ -7,7 +7,6 @@
 - copy: src=postgresql@.service dest=/lib/systemd/system/postgresql@.service
 
 - name: Enable service
-  service:
+  systemd:
     name: postgresql
     enabled: yes
-    daemon_reload: yes
