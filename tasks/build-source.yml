@@ -1,8 +1,8 @@
-- get_url: url="https://ftp.postgresql.org/pub/source/v{{postgresql_version}}/postgresql-{{postgresql_version}}.tar.gz" dest=/tmp/postgresql.tar.gz
+- get_url: url="https://ftp.postgresql.org/pub/source/v{{postgresql_source_build}}/postgresql-{{postgresql_source_build}}.tar.gz" dest=/tmp/postgresql.tar.gz
 - unarchive: src=/tmp/postgresql.tar.gz dest=/tmp
-- shell: ./configure --with-systemd chdir=/tmp/postgresql-{{postgresql_version}}
-- shell: make chdir=/tmp/postgresql-{{postgresql_version}}
-- shell: make install chdir=/tmp/postgresql-{{postgresql_version}}
+- shell: ./configure --with-systemd chdir=/tmp/postgresql-{{postgresql_source_build}}
+- shell: make chdir=/tmp/postgresql-{{postgresql_source_build}}
+- shell: make install chdir=/tmp/postgresql-{{postgresql_source_build}}
 - copy: src=postgresql.service dest=/lib/systemd/system/postgresql.service
 - copy: src=postgresql@.service dest=/lib/systemd/system/postgresql@.service
 - copy: src=postgresql.init dest=/etc/init.d/postgresql mode=u=rwx,g=rx,o=rx
