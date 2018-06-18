@@ -42,3 +42,14 @@
   # See: https://github.com/ansible/ansible/issues/16048#issuecomment-229012509
   vars:
     ansible_ssh_pipelining: true
+
+- name: Check if PostgreSQL configuration exists.
+  stat:
+    path: "{{ postgresql_config_path }}/postgres.conf"
+  register: pgconf_config
+
+- name: Ensure PostgreSQL database is initialized.
+  copy: src="{{ postgresql_data_dir }}/postgres.conf" dest="{{ postgresql_config_path }}/postgres.conf"
+  when: not pgconf_config.stat.exists
+  vars:
+    ansible_ssh_pipelining: true
