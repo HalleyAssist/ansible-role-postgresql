@@ -8,5 +8,6 @@
 
 - name: Enable service
   service:
-    name: postgresql.service
+    name: postgresql
     enabled: yes
+    daemon_reload: yes
