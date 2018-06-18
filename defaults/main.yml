@@ -59,3 +59,4 @@ postgresql_skip_restart: False
 postgresql_source_build: False
 postgresql_build_dependencies:
  - build-essential
+ - locales
