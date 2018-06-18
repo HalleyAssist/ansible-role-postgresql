@@ -45,11 +45,12 @@
 
 - name: Check if PostgreSQL configuration exists.
   stat:
-    path: "{{ postgresql_config_path }}/postgres.conf"
+    path: "{{ postgresql_config_path }}/postgresql.conf"
   register: pgconf_config
 
-- name: Ensure PostgreSQL database is initialized.
-  copy: src="{{ postgresql_data_dir }}/postgres.conf" dest="{{ postgresql_config_path }}/postgres.conf"
+# may happen if postgresql_data_dir != postgresql_config_path and not installing from a package
+- name: Ensure PostgreSQL config is initialized.
+  copy: src="{{ postgresql_data_dir }}/postgresql.conf" dest="{{ postgresql_config_path }}/postgresql.conf"
   when: not pgconf_config.stat.exists
   vars:
     ansible_ssh_pipelining: true
