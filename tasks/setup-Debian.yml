@@ -17,12 +17,12 @@
     name: "{{ item }}"
     state: installed
   with_items: "{{ postgresql_build_dependencies }}"
-  when: 'postgresql_source_build'
+  when: 'postgresql_source_build != False'
 
 - name: Execute PostgreSQL build
   include: build-source.yml
-  when: 'postgresql_source_build'
-  
+  when: 'postgresql_source_build != False'
+
 - name: Ensure all configured locales are present.
   locale_gen: "name={{ item }} state=present"
   with_items: "{{ postgresql_locales }}"
