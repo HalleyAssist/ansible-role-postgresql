@@ -63,7 +63,7 @@ postgresql_build_dependencies:
  - postgresql-client-common
 
 postgresql_group_id: 113
-postgresql_user_id: 105
+postgresql_user_id: 113
 
 postgresql_additional_configure: ""
 postgresql_additional_make: ""
