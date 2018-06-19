@@ -60,6 +60,7 @@ postgresql_source_build: False
 postgresql_build_dependencies:
  - build-essential
  - locales
+ - postgresql-client-common
 
 postgresql_group_id: 113
 postgresql_user_id: 105
