@@ -9,7 +9,7 @@
   static: no
 
 - include: setup-Debian.yml
-  when: ansible_os_family == 'Debian'' and postgresql_config_only == False
+  when: ansible_os_family == 'Debian'
   static: no
 
 - include: initialize.yml

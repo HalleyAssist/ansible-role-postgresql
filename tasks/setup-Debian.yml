@@ -21,7 +21,7 @@
 
 - name: Execute PostgreSQL build
   include: build-source.yml
-  when: 'postgresql_source_build != False and postgresql_config_only == False'
+  when: 'postgresql_source_build != False'
 
 - name: Ensure all configured locales are present.
   locale_gen: "name={{ item }} state=present"
