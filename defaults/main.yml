@@ -67,3 +67,5 @@ postgresql_user_id: 113
 
 postgresql_additional_configure: ""
 postgresql_additional_make: ""
+
+postgresql_config_only: false
