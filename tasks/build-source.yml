@@ -12,6 +12,7 @@
 - copy: src=postgresql@.service dest=/lib/systemd/system/postgresql@.service
 - copy: src=postgresql.init dest=/etc/init.d/postgresql mode=u=rwx,g=rx,o=rx
 - copy: src=pg_ctlcluster dest=/usr/bin/pg_ctlcluster mode=u=rwx,g=rx,o=rx
+- file: src=/usr/lib/postgresql/{{postgresql_version}}/bin/pg_config dest=/usr/bin/pg_config state=link
 
 - name: Enable service
   service:
