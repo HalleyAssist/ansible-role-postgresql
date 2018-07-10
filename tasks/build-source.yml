@@ -13,7 +13,7 @@
 - copy: src=postgresql.init dest=/etc/init.d/postgresql mode=u=rwx,g=rx,o=rx
 - copy: src=pg_ctlcluster dest=/usr/bin/pg_ctlcluster mode=u=rwx,g=rx,o=rx
 - file: src=/usr/lib/postgresql/{{postgresql_version}}/bin/pg_config dest=/usr/bin/pg_config state=link
-- copy: src=PgCommon.pm dest=usr/share/perl5/PgCommon.pm mode=u=rwx,g=rx,o=rx
+- copy: src=PgCommon.pm dest=/etc/perl/PgCommon.pm mode=u=rwx,g=rx,o=rx
 
 - name: Enable service
   service:
