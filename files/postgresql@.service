@@ -25,6 +25,7 @@ SyslogIdentifier=postgresql@%i
 #Restart=on-failure
 # (This should make pg_ctlcluster stop work, but doesn't:)
 #RestartPreventExitStatus=SIGINT SIGTERM
+Environment=MALLOC_ARENA_MAX=2
 
 [Install]
 WantedBy=multi-user.target
