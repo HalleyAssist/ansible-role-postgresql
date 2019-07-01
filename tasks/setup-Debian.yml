@@ -4,6 +4,8 @@
     name: "{{ postgresql_python_library }}"
     state: present
   when: 'postgresql_python_library != ""'
+  tags:
+   - package_install
 
 - name: Ensure PostgreSQL packages are installed.
   apt:
@@ -11,6 +13,8 @@
     state: present
   with_items: "{{ postgresql_packages }}"
   when: 'postgresql_source_build == False'
+  tags:
+   - package_install
 
 - name: Ensure PostgreSQL build dependencies are installed.
   apt:
@@ -18,6 +22,8 @@
     state: present
   with_items: "{{ postgresql_build_dependencies }}"
   when: 'postgresql_source_build != False'
+  tags:
+   - package_install
 
 - name: Execute PostgreSQL build
   include: build-source.yml
