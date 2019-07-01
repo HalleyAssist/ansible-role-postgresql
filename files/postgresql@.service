@@ -11,12 +11,13 @@ ReloadPropagatedFrom=postgresql.service
 Before=postgresql.service
 
 [Service]
-Type=forking
+Type=simple
 # @: use "postgresql@%i" as process name
-ExecStart=@/usr/bin/pg_ctlcluster postgresql@%i %i start
-ExecStop=/usr/bin/pg_ctlcluster -m fast %i stop
-ExecReload=/usr/bin/pg_ctlcluster %i reload
-PIDFile=/var/run/postgresql/%i.pid
+ExecStart=@-/usr/bin/pg_ctlcluster --skip-systemctl-redirect --foreground %i start
+TimeoutStartSec=0
+ExecStop=/usr/bin/pg_ctlcluster --skip-systemctl-redirect -m fast %i stop
+ExecReload=/usr/bin/pg_ctlcluster --skip-systemctl-redirect %i reload
+PIDFile=/run/postgresql/%i.pid
 SyslogIdentifier=postgresql@%i
 # restarting automatically will prevent "pg_ctlcluster ... stop" from working,
 # so we disable it here. Also, the postmaster will restart by itself on most
@@ -25,6 +26,7 @@ SyslogIdentifier=postgresql@%i
 #Restart=on-failure
 # (This should make pg_ctlcluster stop work, but doesn't:)
 #RestartPreventExitStatus=SIGINT SIGTERM
+Environment=MALLOC_ARENA_MAX=2
 
 [Install]
 WantedBy=multi-user.target
