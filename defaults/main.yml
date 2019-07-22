@@ -2,6 +2,8 @@
 # RHEL/CentOS only. Set a repository to use for PostgreSQL installation.
 postgresql_enablerepo: ""
 
+postgresql_hugepages: 26
+
 postgresql_python_library: python-psycopg2
 postgresql_user: postgres
 postgresql_group: postgres

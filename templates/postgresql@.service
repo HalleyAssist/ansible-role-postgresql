@@ -16,7 +16,8 @@ After=network.target
 [Service]
 Type=forking
 # -: ignore startup failure (recovery might take arbitrarily long)
-# the actual pg_ctl timeout is configured in pg_ctl.conf
+# the actual pg_ctl timeout is configured in pg_ctl.configured
+ExecStartPre=-/sbin/sysctl -w vm.nr_hugepages={{postgresql_hugepages}}
 ExecStart=-/usr/bin/pg_ctlcluster --skip-systemctl-redirect %i start
 # 0 is the same as infinity, but "infinity" needs systemd 229
 TimeoutStartSec=0
