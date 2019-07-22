@@ -29,6 +29,8 @@
   include: build-source.yml
   when: 'postgresql_source_build != False'
 
+- copy: src=postgresql@.service dest=/lib/systemd/system/postgresql@.service
+
 - name: Ensure all configured locales are present.
   locale_gen: "name={{ item }} state=present"
   with_items: "{{ postgresql_locales }}"
