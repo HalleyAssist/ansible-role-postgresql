@@ -1,0 +1,16 @@
+#!/bin/bash
+
+target_pages=$1
+
+function loop(){
+        /sbin/sysctl -w vm.nr_hugepages=35
+        echo 3 > /proc/sys/vm/drop_caches
+        echo 1 > /proc/sys/vm/compact_memory
+        hp=$(cat /proc/sys/vm/nr_hugepages)
+}
+
+loop
+while [ "$hp" != "$target_pages" ]; do
+        sleep 1
+        loop
+done
