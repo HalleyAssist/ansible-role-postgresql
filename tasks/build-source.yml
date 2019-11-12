@@ -1,7 +1,10 @@
 - get_url: url="https://ftp.postgresql.org/pub/source/v{{postgresql_source_build}}/postgresql-{{postgresql_source_build}}.tar.gz" dest=/tmp/postgresql.tar.gz
   when: 'postgresql_config_only == False'
+- get_url: url="https://github.com/sclorg/postgresql/raw/master/postgresql-var-run-socket.patch" dest=/tmp/socket-path.patch
+  when: 'postgresql_config_only == False'
 - unarchive: src=/tmp/postgresql.tar.gz dest=/tmp
   when: 'postgresql_config_only == False'
+- shell: patch -p1 < /tmp/socket-path.patch chdir=/tmp/postgresql-{{postgresql_source_build}}
 - shell: ./configure --with-systemd --prefix=/usr/lib/postgresql/{{postgresql_version}} --sysconfdir={{postgresql_config_path}} --bindir={{postgresql_bin_path}} {{postgresql_additional_configure}} chdir=/tmp/postgresql-{{postgresql_source_build}}
   when: 'postgresql_config_only == False'
 - shell: make {{postgresql_additional_make}} chdir=/tmp/postgresql-{{postgresql_source_build}}
