@@ -12,6 +12,7 @@ After=network.target
 [Service]
 User=postgres
 Type=notify
+PermissionsStartOnly=true
 ExecStartPre=-/usr/bin/pg_huge {{postgresql_hugepages}}
 ExecStart=-/usr/lib/postgresql/11/bin/postgres -D /data/db/{{postgresql_version}}
 TimeoutStartSec=0
