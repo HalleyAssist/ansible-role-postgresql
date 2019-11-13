@@ -1,9 +1,9 @@
 # systemd service template for PostgreSQL.
 
 [Unit]
-Description=PostgreSQL Cluster %i
-AssertPathExists=/etc/postgresql/%I/postgresql.conf
-RequiresMountsFor=/etc/postgresql/%I /var/lib/postgresql/%I
+Description=PostgreSQL Cluster
+AssertPathExists=/etc/postgresql/{{postgresql_version}}/postgresql.conf
+RequiresMountsFor=/etc/postgresql/{{postgresql_version}} /var/lib/postgresql/{{postgresql_version}}
 PartOf=postgresql.service
 ReloadPropagatedFrom=postgresql.service
 Before=postgresql.service
@@ -21,7 +21,7 @@ ExecReload=/bin/kill -HUP $MAINPID
 TimeoutStopSec=5m
 KillMode=mixed
 KillSignal=SIGINT
-SyslogIdentifier=postgresql@%i
+SyslogIdentifier=postgresql
 OOMScoreAdjust=-900
 Restart=always
 Environment=MALLOC_ARENA_MAX=2
