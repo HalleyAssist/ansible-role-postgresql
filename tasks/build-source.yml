@@ -1,6 +1,6 @@
 - get_url: url="https://ftp.postgresql.org/pub/source/v{{postgresql_source_build}}/postgresql-{{postgresql_source_build}}.tar.gz" dest=/tmp/postgresql.tar.gz
   when: 'postgresql_config_only == False'
-- get_url: url="https://github.com/sclorg/postgresql/raw/master/postgresql-var-run-socket.patch" dest=/tmp/socket-path.patch
+- get_url: url="https://raw.githubusercontent.com/sclorg/postgresql/master/postgresql-var-run-socket.patch" dest=/tmp/socket-path.patch
   when: 'postgresql_config_only == False'
 - unarchive: src=/tmp/postgresql.tar.gz dest=/tmp
   when: 'postgresql_config_only == False'
