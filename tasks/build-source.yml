@@ -2,7 +2,7 @@
   when: 'postgresql_config_only == False'
 - unarchive: src=/tmp/postgresql.tar.gz dest=/tmp
   when: 'postgresql_config_only == False'
-- shell: patch -p1 < {{role_path}}/socket-path.patch chdir=/tmp/postgresql-{{postgresql_source_build}}
+- patch: strip=1 src={{role_path}}/socket-path.patch basedir=/tmp/postgresql-{{postgresql_source_build}}
 - shell: ./configure --with-systemd --prefix=/usr/lib/postgresql/{{postgresql_version}} --sysconfdir={{postgresql_config_path}} --bindir={{postgresql_bin_path}} {{postgresql_additional_configure}} chdir=/tmp/postgresql-{{postgresql_source_build}}
   when: 'postgresql_config_only == False'
 - shell: make {{postgresql_additional_make}} chdir=/tmp/postgresql-{{postgresql_source_build}}
