@@ -2,11 +2,8 @@
 
 [Unit]
 Description=PostgreSQL Cluster
-AssertPathExists=/etc/postgresql/{{postgresql_version}}/postgresql.conf
-RequiresMountsFor=/etc/postgresql/{{postgresql_version}} /var/lib/postgresql/{{postgresql_version}}
-PartOf=postgresql.service
-ReloadPropagatedFrom=postgresql.service
-Before=postgresql.service
+AssertPathExists=/etc/postgresql/{{postgresql_version}}/main/postgresql.conf
+RequiresMountsFor=/etc/postgresql/{{postgresql_version}}/main /var/lib/postgresql/{{postgresql_version}}
 After=network.target
 
 [Service]
