@@ -18,5 +18,5 @@
 - copy: src=PgCommon.pm dest=/etc/perl/PgCommon.pm mode=u=rwx,g=rx,o=rx
 - file: path=/lib/systemd/system/postgresql@.service state=absent
 
-- name: Enable service
-  shell: "systemctl enable postgresql"
+#- name: Enable service
+#  shell: "systemctl enable postgresql"
