@@ -57,12 +57,10 @@ postgresql_users: []
   #   state: # defaults to 'present'
 
 postgresql_skip_restart: False
-
 postgresql_source_build: False
 postgresql_build_dependencies:
  - build-essential
  - locales
- - llvm
 
 postgresql_group_id: 113
 postgresql_user_id: 113
