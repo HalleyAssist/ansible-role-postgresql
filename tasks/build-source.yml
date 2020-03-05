@@ -19,6 +19,4 @@
 - file: path=/lib/systemd/system/postgresql@.service state=absent
 
 - name: Enable service
-  service:
-    name: postgresql
-    enabled: yes
+  shell: "systemctl enable postgresql"
