@@ -17,6 +17,6 @@
 - file: src=/usr/lib/postgresql/{{postgresql_version}}/bin/psql dest=/usr/bin/psql state=link mode=u=rwx,g=rx,o=rx
 - copy: src=PgCommon.pm dest=/etc/perl/PgCommon.pm mode=u=rwx,g=rx,o=rx
 - file: path=/lib/systemd/system/postgresql@.service state=absent
-
+- file: path=/var/run/postgresql state=directory owner=postgres group=postgres
 #- name: Enable service
 #  shell: "systemctl enable postgresql"
