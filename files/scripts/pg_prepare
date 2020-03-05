@@ -1,5 +1,8 @@
 #!/bin/bash
 
+mkdir /var/run/postgresql
+chown postgres:postgres /var/run/postgresql
+
 if [[ ! -d /data/db/$1 ]]; then
     sudo -u postgres /usr/lib/postgresql/$1/bin/initdb /data/db/$1
 fi
