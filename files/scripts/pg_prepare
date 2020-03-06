@@ -1,8 +1,20 @@
 #!/bin/bash
 
+PG_VERSION="12"
+
 mkdir /var/run/postgresql
 chown postgres:postgres /var/run/postgresql
 
-if [[ ! -d /data/db/$1 ]]; then
-    sudo -u postgres /usr/lib/postgresql/$1/bin/initdb /data/db/$1
+if [[ ! -e /data/db/$PG_VERSION/PG_VERSION ]]; then
+    # If either new or directory not versioned
+    mkdir -p /data/db/$PG_VERSION
+    if [[ -e /data/db/PG_VERSION ]]; then
+        # Not versioned, move db into sub directory
+        mv /data/db/* /data/db/$PG_VERSION/
+    else
+        sudo -u postgres /usr/lib/postgresql/$PG_VERSION/bin/pg_ctl -D /data/db/$PG_VERSION initdb
+    fi
 fi
+
+chown -R postgres:postgres /data/db
+chmod -R 0700 /data/db
