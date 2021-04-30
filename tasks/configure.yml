@@ -3,7 +3,7 @@
   lineinfile:
     dest: "{{ postgresql_config_path }}/postgresql.conf"
     regexp: "^#?{{ item.option }}.+$"
-    line: "{{ item.option }} = '{{ item.value }}'"
+    line: "{{ item.option }} = '{{ item.value | default('off') }}'"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ postgresql_global_config_options }}"
   notify: restart postgresql
