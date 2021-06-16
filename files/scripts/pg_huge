@@ -6,16 +6,20 @@ if [[ ! -f /proc/sys/vm/nr_hugepages ]]; then
 fi
 
 target_pages=$1
+if [[ "$target_pages" == "0" ]]; then
+        echo "HugePages not desired"
+        exit 0
+fi
 
 function loop(){
-        /sbin/sysctl -w vm.nr_hugepages=35
+        /sbin/sysctl -w vm.nr_hugepages=$target_pages
         echo 3 > /proc/sys/vm/drop_caches
         echo 1 > /proc/sys/vm/compact_memory
         hp=$(cat /proc/sys/vm/nr_hugepages)
 }
 
 loop
-while [ "$hp" != "$target_pages" ]; do
+while [ "$hp" -lt "$target_pages" ]; do
         sleep 1
         loop
 done
