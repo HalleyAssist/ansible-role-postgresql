@@ -69,3 +69,5 @@ postgresql_additional_configure: ""
 postgresql_additional_make: ""
 
 postgresql_config_only: false
+
+postgresql_source_url: "https://ftp.postgresql.org/pub/source/v{{postgresql_source_build}}/postgresql-{{postgresql_source_build}}.tar.gz"

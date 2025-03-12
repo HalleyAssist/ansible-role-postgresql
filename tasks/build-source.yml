@@ -1,4 +1,4 @@
-- get_url: url="https://ftp.postgresql.org/pub/source/v{{postgresql_source_build}}/postgresql-{{postgresql_source_build}}.tar.gz" dest=/tmp/postgresql.tar.gz
+- get_url: url="{{postgresql_source_url}}" dest=/tmp/postgresql.tar.gz
   when: 'postgresql_config_only == False'
 - unarchive: src=/tmp/postgresql.tar.gz dest=/tmp
   when: 'postgresql_config_only == False'
